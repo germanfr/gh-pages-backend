@@ -4,7 +4,7 @@
 	"description": "My website's backend",
 	"main": "src/index.mjs",
 	"scripts": {
-		"start": "node src/index.js",
+		"start": "node src/index.mjs",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
