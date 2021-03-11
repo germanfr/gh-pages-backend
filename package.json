@@ -1,0 +1,22 @@
+{
+	"name": "gh-pages-backend",
+	"version": "1.0.0",
+	"description": "My website's backend",
+	"main": "src/index.mjs",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://a8470df4a86901bdf216bee8f7e6c543a3153985@github.com/germanfr/gh-pages-backend.git"
+	},
+	"author": "Germán Franco",
+	"license": "AGPL-3.0",
+	"bugs": {
+		"url": "https://github.com/germanfr/gh-pages-backend/issues"
+	},
+	"homepage": "https://github.com/germanfr/gh-pages-backend#readme",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}
