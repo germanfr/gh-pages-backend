@@ -1,6 +1,7 @@
 import './envirnoment.mjs';
 
 import express from 'express';
+import cors from 'cors';
 
 
 import { MemoryCacheManager } from './cache/MemoryCacheManager.mjs';
@@ -9,8 +10,10 @@ import { GithubProfile } from './profile/index.mjs';
 const PORT = parseInt(process.env.PORT) || 3000;
 
 const app = express();
+if (process.env.CLIENT_DOMAIN) {
+	app.use(cors({ origin: process.env.CLIENT_DOMAIN }));
+}
 
-// const profile = ProfileManager.get('germanfr', process.env.GH_ACCESS_TOKEN);
 const profile = new GithubProfile(
 	process.env.GH_USERNAME,
 	process.env.GH_ACCESS_TOKEN,
