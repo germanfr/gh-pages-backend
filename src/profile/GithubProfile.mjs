@@ -9,6 +9,7 @@ const API = {
 
 const STORAGE_KEYS = {
 	repos: 'github-repos-cache',
+	contributions: 'github-contributions-cache',
 	yearContributions: year => `github-contributions-${year}-cache`,
 }
 
@@ -99,7 +100,14 @@ export class GithubProfile {
 	}
 
 
-	async contributions() {
+	contributions() {
+		return this.cache.get(STORAGE_KEYS.contributions, {
+			fetch: this.#fetchAllContributions.bind(this),
+			isValid: contribs => contribs && Object.keys(contribs).length > 0,
+		});
+	}
+
+	async #fetchAllContributions() {
 		let promises = []; // Generate concurrent requests
 		const currentYear = new Date().getFullYear();
 		for (let year = currentYear - 3; year <= currentYear; year++) {
@@ -115,12 +123,12 @@ export class GithubProfile {
 
 	yearContributions(year) {
 		return this.cache.get(STORAGE_KEYS.yearContributions(year), {
-			fetch: this.fetchYearContributions.bind(this, year),
+			fetch: this.#yearContributionsInternal.bind(this, year),
 			isValid: contribs => contribs?.repositories?.length > 0,
 		});
 	}
 
-	async fetchYearContributions(year) {
+	async #yearContributionsInternal(year) {
 		if (isNaN(year)) {
 			year = new Date().getFullYear();
 		}
