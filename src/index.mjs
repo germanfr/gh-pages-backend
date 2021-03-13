@@ -1,6 +1,7 @@
+import './envirnoment.mjs';
+
 import express from 'express';
 
-import './envirnoment.mjs';
 
 import { MemoryCacheManager } from './cache/MemoryCacheManager.mjs';
 import { GithubProfile } from './profile/index.mjs';
@@ -42,5 +43,6 @@ app.get('/contributions/:year(\\d{4})?', async (req, res) => {
 
 
 app.listen(PORT, function(...args) {
+	console.log(`NODE_ENV=${process.env.NODE_ENV}`)
 	console.log(`Server running on port ${this.address().port}`);
 });
